@@ -32,26 +32,13 @@
             background: #94a3b8;
         }
     </style>
-
-    <!-- iPhone / iPad Home Screen + Standalone Web App -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-
-    <link rel="manifest" href="./manifest.json">
-
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Dashboards">
-
-    <!-- Standard browser icon -->
-    <link rel="icon" type="image/png" href="./apple-touch-icon.png">
-
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
 
     <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="bg-indigo-600 text-white p-2 rounded-xl shadow-sm">
+                <div class="bg-gradient-to-r from-[#ff2828] to-[#d91f1f] text-white p-2 rounded-xl shadow-sm">
                     <i class="fa-solid fa-wallet text-lg"></i>
                 </div>
                 <div>
@@ -66,7 +53,7 @@
                     <i class="fa-solid fa-gear sm:mr-1.5"></i>
                     <span class="hidden sm:inline">Settings</span>
                 </button>
-                <button onclick="loadSheetData()" id="refresh-btn" class="inline-flex items-center px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-xs transition-all">
+                <button onclick="loadSheetData()" id="refresh-btn" class="inline-flex items-center px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs font-semibold text-white bg-gradient-to-r from-[#ff2828] to-[#d91f1f] hover:from-[#e02020] hover:to-[#be1818] rounded-lg shadow-xs transition-all">
                     <i class="fa-solid fa-rotate-right mr-1.5" id="refresh-icon"></i>
                     Refresh Data
                 </button>
@@ -81,7 +68,7 @@
             <div class="flex flex-wrap items-center gap-2 sm:gap-3">
                 <!-- Month Selector -->
                 <div class="flex items-center space-x-1.5 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5">
-                    <i class="fa-regular fa-calendar text-indigo-600 text-xs"></i>
+                    <i class="fa-regular fa-calendar text-[#ff2828] text-xs"></i>
                     <label for="month-select" class="text-xs font-medium text-slate-600">Month:</label>
                     <select id="month-select" onchange="onMonthChange()" class="bg-transparent text-xs font-semibold text-slate-900 focus:outline-none cursor-pointer">
                         <option value="">Loading...</option>
@@ -90,7 +77,7 @@
 
                 <!-- Category Filter -->
                 <div class="flex items-center space-x-1.5 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5">
-                    <i class="fa-solid fa-tag text-indigo-600 text-xs"></i>
+                    <i class="fa-solid fa-tag text-[#ff2828] text-xs"></i>
                     <label for="category-select" class="text-xs font-medium text-slate-600">Category:</label>
                     <select id="category-select" onchange="applyFilters()" class="bg-transparent text-xs font-semibold text-slate-900 focus:outline-none cursor-pointer max-w-[110px] sm:max-w-none">
                         <option value="ALL">All Categories</option>
@@ -104,7 +91,7 @@
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
                         <i class="fa-solid fa-magnifying-glass text-xs"></i>
                     </span>
-                    <input type="text" id="search-input" oninput="applyFilters()" placeholder="Search remarks..." class="w-full pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500">
+                    <input type="text" id="search-input" oninput="applyFilters()" placeholder="Search remarks..." class="w-full pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#ff2828]/20 focus:border-[#ff2828]">
                 </div>
                 <button onclick="resetFilters()" class="px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors whitespace-nowrap">
                     Reset
@@ -117,8 +104,8 @@
             <!-- Current Month Scorecard -->
             <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-slate-200 shadow-xs relative overflow-hidden flex flex-col justify-between">
                 <div class="flex items-center justify-between mb-2">
-                    <span id="card-curr-label" class="text-xs sm:text-sm font-bold text-indigo-600 truncate">Current Month</span>
-                    <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600">
+                    <span id="card-curr-label" class="text-xs sm:text-sm font-bold text-[#ff2828] truncate">Current Month</span>
+                    <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-xl bg-red-50 flex items-center justify-center text-[#ff2828]">
                         <i class="fa-solid fa-coins text-xs sm:text-sm"></i>
                     </div>
                 </div>
@@ -149,7 +136,7 @@
                     <h3 class="text-xs sm:text-base font-bold text-slate-900">Category Comparison</h3>
                     <p class="text-[9px] sm:text-xs text-slate-500">Comparing <span id="table-curr-label" class="font-semibold text-slate-700">-</span> vs <span id="table-prev-label" class="font-semibold text-slate-700">-</span></p>
                 </div>
-                <span class="text-[9px] sm:text-xs font-semibold px-2 py-0.5 sm:px-2.5 sm:py-1 bg-indigo-50 text-indigo-700 rounded-full">Monthly Breakdown</span>
+                <span class="text-[9px] sm:text-xs font-semibold px-2 py-0.5 sm:px-2.5 sm:py-1 bg-red-50 text-[#ff2828] rounded-full">Monthly Breakdown</span>
             </div>
             
             <div class="overflow-x-auto">
@@ -217,7 +204,7 @@
             </div>
             <div class="flex justify-end space-x-2 pt-2">
                 <button onclick="closeConfigModal()" class="px-4 py-2 text-xs font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg">Cancel</button>
-                <button onclick="saveConfig()" class="px-4 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-xs">Save & Reload</button>
+                <button onclick="saveConfig()" class="px-4 py-2 text-xs font-semibold text-white bg-gradient-to-r from-[#ff2828] to-[#d91f1f] hover:from-[#e02020] hover:to-[#be1818] rounded-lg shadow-xs">Save & Reload</button>
             </div>
         </div>
     </div>
@@ -652,7 +639,7 @@
                 tr.innerHTML = `
                     <td class="px-3 py-2.5 sm:px-6 sm:py-3.5 text-slate-600 font-mono text-[11px] sm:text-sm whitespace-nowrap w-24 sm:w-36">${t.dateFormattedFull}</td>
                     <td class="px-3 py-2.5 sm:px-6 sm:py-3.5 whitespace-nowrap w-28 sm:w-44">
-                        <span class="bg-indigo-50 text-indigo-700 font-semibold px-2 py-0.5 rounded text-[11px] sm:text-sm inline-block truncate max-w-[90px] sm:max-w-none align-middle" title="${t.category}">${t.category}</span>
+                        <span class="bg-red-50 text-[#ff2828] font-semibold px-2 py-0.5 rounded text-[11px] sm:text-sm inline-block truncate max-w-[90px] sm:max-w-none align-middle" title="${t.category}">${t.category}</span>
                     </td>
                     <td class="px-3 py-2.5 sm:px-6 sm:py-3.5 text-right font-bold text-slate-900 text-[11px] sm:text-sm whitespace-nowrap w-24 sm:w-32">${formatCurrency(t.amount)}</td>
                     <td class="px-4 py-2.5 sm:px-6 sm:py-3.5 text-slate-600 text-xs sm:text-sm whitespace-nowrap">${t.remarks || '<span class="text-slate-400 italic">-</span>'}</td>
